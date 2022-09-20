@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div>
     <h1>{{ msg }}</h1>
     
   </div>
@@ -7,10 +7,15 @@
 
 <script>
 export default {
+  data(){
+    return{
+
+    };
+  },
   name: 'HelloWorld',
   props: {
     msg: String
   }
-}
+};
 </script>
 
