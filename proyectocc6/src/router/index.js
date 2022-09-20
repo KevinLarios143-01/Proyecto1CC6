@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+
 import NProgress from 'nprogress';
 
 
@@ -16,7 +17,9 @@ const routes = [
   {
     path: '/solicitud',
     name: 'solicitud',
+
     component: () => import('../views/Solicitud.vue'),
+
   },
   {
     path: '/categoria',
