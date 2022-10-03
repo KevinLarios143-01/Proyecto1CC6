@@ -1,12 +1,12 @@
 Create Table Departamento(
-	cod_postal int,
+	cod_postal varchar(5),
 	nombre varchar(30),
 	PRIMARY KEY (cod_postal)
 );
 
 Create Table Trayectoria(
-	cod_origen int,
-	cod_destino int,
+	cod_origen varchar(5),
+	cod_destino varchar(5),
 	precio int,
 	PRIMARY KEY (cod_origen, cod_destino),
 	FOREIGN KEY (cod_origen) REFERENCES Departamento(cod_postal),
@@ -20,7 +20,7 @@ Create Table Destinatario(
 	telefono varchar(30),
 	email varchar(30),
 	instrucciones varchar(100),
-	cod_postal int,
+	cod_postal varchar(5),
 	PRIMARY KEY (id_destinatario),
 	FOREIGN KEY (cod_postal) REFERENCES Departamento(cod_postal)
 );
@@ -28,7 +28,7 @@ Create Table Destinatario(
 Create Table Remitente(
 	id_remitente int,
 	nombre varchar(30),
-	cod_postal int,
+	cod_postal varchar(5),
 	tipo_Cliente int,
 	telefono varchar(10),
 	PRIMARY KEY (id_remitente),
