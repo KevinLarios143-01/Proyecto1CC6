@@ -3,7 +3,8 @@ version: '3'
 # Creamos los servicios
 services:
   mydb:                                 # Creamos el servicios mydb para identificar la imagen
-    image: postgres               # Usamos la imagen postgresql en la versión 12
+    image: postgres
+    #restart: always               # Usamos la imagen postgresql en la versión 12
     volumes:
       - postgresdb:/var/lib/postgresql  # Crearemos un volumen para almacenar los datos de la db
     ports:                               
