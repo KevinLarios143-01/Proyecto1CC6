@@ -14,41 +14,35 @@ Create Table Trayectoria(
 );
 
 Create Table Destinatario(
-	id_destinatario int,
+	id_destinatario serial,
 	direccion varchar(50),
 	nombre varchar(30),
-	telefono varchar(30),
-	email varchar(30),
-	instrucciones varchar(100),
 	cod_postal varchar(5),
 	PRIMARY KEY (id_destinatario),
 	FOREIGN KEY (cod_postal) REFERENCES Departamento(cod_postal)
 );
 
 Create Table Remitente(
-	id_remitente int,
+	id_remitente serial,
 	nombre varchar(30),
 	cod_postal varchar(5),
-	tipo_Cliente int,
-	telefono varchar(10),
 	PRIMARY KEY (id_remitente),
 	FOREIGN KEY (cod_postal) REFERENCES Departamento(cod_postal)
 );
 Create Table Estado(
-	id_estado int,
+	id_estado serial,
 	nombre varchar(30),
 	PRIMARY KEY (id_estado)
 );
 Create Table Categoria(
-	id_categoria int,
+	id_categoria serial,
 	nombre varchar(30),
 	precio int,
 	PRIMARY KEY (id_categoria)
 );
 
 Create Table Solicitud(
-	no_solicitud int,
-	fecha_recoleccion date,
+	no_solicitud serial,
 	cantidad int,
 	peso int,
 	total int,
