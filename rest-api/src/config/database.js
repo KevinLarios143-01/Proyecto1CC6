@@ -5,7 +5,7 @@ const conn = new Pool({
     password: "1234",
     database: "pj",
     host: "localhost", 
-    port: 5432
+    port: 5433
 });
 
 

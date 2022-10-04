@@ -43,8 +43,6 @@ Create Table Categoria(
 
 Create Table Solicitud(
 	no_solicitud serial,
-	cantidad int,
-	peso int,
 	total int,
     remitente int,
 	destinatario int,
