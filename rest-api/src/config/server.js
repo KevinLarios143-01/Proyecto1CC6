@@ -8,5 +8,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(cors());
 
-app.set("port", 3000);
+const puerto=process.env.PORT||3000;
+
+app.set("port", puerto);
 module.exports = app;

@@ -43,11 +43,11 @@ Create Table Categoria(
 
 Create Table Solicitud(
 	no_solicitud serial,
-	total int,
     remitente int,
 	destinatario int,
 	estado int,
 	categoria int,
+	total int,
 	PRIMARY KEY (no_solicitud),
 	FOREIGN KEY (remitente) REFERENCES Remitente(id_remitente),
 	FOREIGN KEY (destinatario) REFERENCES Destinatario(id_destinatario),

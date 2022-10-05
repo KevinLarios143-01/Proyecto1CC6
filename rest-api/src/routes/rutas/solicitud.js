@@ -2,6 +2,16 @@ const conn = require('../../config/database');
 
 module.exports = app => {
 
+    app.get("/solicitud/:solicitud",(req, res) => {
+        let querys = `SELECT estado
+                        FROM solicitud 
+                        WHERE no_solicitud = '${req.params.solicitud}';`;
+        conn.query(querys, (err, result) => {
+            if (err) res.status(400).json({status: 0, message: "No se pudo obtener informacion"});
+            else res.json({status: 1, message:"Bien", estatus : result.rows});
+        })
+    });
+
     app.get("/solicitudes/:orden",(req, res) => {
 
         let querys = `SELECT S.no_solicitud, E.nombre 
@@ -29,7 +39,6 @@ module.exports = app => {
         if(origen==null || origen=="" ){
             origen="01000";
         }
-        
         const id_que_toca = "SELECT count(*) AS ids FROM remitente;";
         conn.query(id_que_toca, (err, result) => {
             let id1 =result.rows;
@@ -54,8 +63,6 @@ module.exports = app => {
                 });
             });
         });
-        
-
     });
 
     app.put("/solicitudes/:orden", (req, res) => {

@@ -1,5 +1,5 @@
-<template>
-    <nav class="navbar navbar-expand-lg bg-light">
+<template >
+    <nav class="navbar navbar-expand-lg bg-light" v-if="!['consulta-item','envio-item', 'status-item'].includes($route.name)" >
         <div class="container">
             <a class="navbar-brand" style="font-weight: bold;">Forza G</a>
             <ul class="navbar-nav mr-auto">

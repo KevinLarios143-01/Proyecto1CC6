@@ -5,5 +5,9 @@ require("./routes/rutas/estados")(app);
 require("./routes/rutas/departamentos")(app);
 require("./routes/rutas/precios")(app);
 require("./routes/rutas/solicitud")(app);
+require("./routes/rutas/login")(app);
 
-app.listen(app.get("port"), () => console.log("Servidor corriendo en puerto 3000"));
+app.get('/', (req,res)=>{
+    res.send('Welcome');
+})
+app.listen(app.get("port"), () => console.log("Servidor corriendo en puerto"))
