@@ -4,7 +4,7 @@
 
       <div class="card">
         <div class="card-header" style="text-align: center;">
-          <HelloWorld msg="Solicitud" />
+          <h1>Solicitud</h1>
         </div>
         <div class="card-body">
 
@@ -46,8 +46,6 @@
               </tr>
             </tbody>
           </table>
-
-
           <form class="row g-3">
             <div class="col-md-4">
               <label class="form-label">No. Solicitud</label>
@@ -70,26 +68,11 @@
               <input type="text" class="form-control">
             </div>
             <div class="col-md-4">
-              <label for="inputState" class="form-label">State</label>
+              <label for="inputState" class="form-label">Status</label>
               <select id="inputState" class="form-select">
                 <option selected>Choose...</option>
                 <option>...</option>
               </select>
-            </div>
-            <div class="col-md-2">
-              <label for="inputZip" class="form-label">Zip</label>
-              <input type="text" class="form-control" id="inputZip">
-            </div>
-            <div class="col-12">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">
-                  Check me out
-                </label>
-              </div>
-            </div>
-            <div class="col-12">
-              <button type="submit" class="btn btn-primary">Sign in</button>
             </div>
           </form>
 
@@ -101,12 +84,10 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld,
 
   },
   setup() {

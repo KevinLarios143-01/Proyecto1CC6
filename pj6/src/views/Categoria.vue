@@ -4,7 +4,7 @@
 
       <div class="card">
         <div class="card-header" style="text-align: center;">
-          <HelloWorld msg="Categoria" />
+          <h1>Categoria</h1>
         </div>
         <div class="card-body">
 
@@ -75,12 +75,11 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld
+ 
   }
 }
 </script>
