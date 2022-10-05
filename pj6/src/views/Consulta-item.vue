@@ -66,7 +66,7 @@ export default {
     this.destino = this.$route.query.destino;
     this.formato = this.$route.query.formato;
     this.obtenerConsulta(this.destino, this.formato);
-    let url = "https://reportesvue.herokuapp.com/consulta_xml.php?courier="+this.courier+"&destino"+this.destino+"&cobertura="+this.cobertura+"&costo="+this.costo; 
+    let url = "https://reportesvue.herokuapp.com/consulta_xml.php?courier="+this.courier+"&destino="+this.destino+"&cobertura="+this.cobertura+"&costo="+this.costo; 
     window.location.href = url;
   },
   methods: {
