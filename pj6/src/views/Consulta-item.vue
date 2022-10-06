@@ -1,40 +1,5 @@
 <template>
-  <div>
-    {{jsons}}
-    <div v-if="formato == 'JSON' || formato == 'json'">
-      {{ tagintro }}{{ llaves }} <br />
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ tagintro }} <br />
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{
-        tagcourrier
-      }}
-      <br />
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{
-        tagdestino
-      }}
-      <br />
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{
-        tagcobertura
-      }}
-      <br />
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{
-        tagprecio
-      }}
-      <br />
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ tagfin }} <br />
-      {{ tagfin }}
-    </div>
-    <div v-else>
-      <pre
-        >{{ tagintro }}
-{{ tagcourrier }}
-{{ tagdestino }}
-{{ tagcobertura }}
-{{ tagprecio }}
-{{ tagfin }}
-</pre
-      >
-    </div>
-  </div>
+
 </template>
 <script>
 // @ is an alias to /src
@@ -65,12 +30,10 @@ export default {
   mounted() {
     this.destino = this.$route.query.destino;
     this.formato = this.$route.query.formato;
-    this.obtenerConsulta(this.destino, this.formato);
-    let url = "https://reportesvue.herokuapp.com/consulta_xml.php?courier="+this.courier+"&destino="+this.destino+"&cobertura="+this.cobertura+"&costo="+this.costo; 
-    window.location.href = url;
+    this.obtenerConsulta(this.destino);
   },
   methods: {
-    obtenerConsulta(desti, forma) {
+    obtenerConsulta(desti) {
       let param = {
         cod_origen: "",
         cod_destino: "",
@@ -78,18 +41,20 @@ export default {
       };
       axios({
         method: "get",
-        url: "http://localhost:3000/precios/" + desti,
+        url: "https://forzag.herokuapp.com/precios/" + desti,
         responseType: "json",
         data: param,
       }).then((response) => {
         this.Datos = [];
         if (response.status == 200) {
-          if (response.data.datos.length > 0) {
+          if (response.data.estatus.length > 0) {
             this.cobertura = true;
-            for (const element of response.data.datos) {
+            for (const element of response.data.estatus) {
               this.origen = element.cod_origen;
               this.costo = element.precio;
             }
+            console.log(this.origen)
+            console.log(this.costo)
             this.Datos.push(this.courier);
             this.Datos.push(this.destino);
             this.Datos.push(this.cobertura);
@@ -102,7 +67,8 @@ export default {
             this.Datos.push(this.cobertura);
             this.Datos.push(this.costo);
           }
-       
+          let url = "https://reportesvue.herokuapp.com/consulta_xml.php?courier="+this.courier+"&destino="+this.destino+"&cobertura="+this.cobertura+"&costo="+this.costo; 
+          window.location.href = url;
           //this.formatearData(forma);
         }
       });

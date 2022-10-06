@@ -12,7 +12,7 @@ module.exports = app => {
     });
     app.get("/precios/:des",(req, res) => {
 
-        let querys = `SELECT * FROM trayectoria WHERE cod_origen = '01000' AND cod_destino = '${req.params.des}'`;
+        let querys = `SELECT * FROM trayectoria WHERE cod_origen = '01001' AND cod_destino = '${req.params.des}'`;
         conn.query(querys, (err, result) => {
             if (err) res.status(400).json({status: 0, message: "No se pudo obtener informacion"});
             else res.json({status: 1, message:"Bien", estatus : result.rows});
