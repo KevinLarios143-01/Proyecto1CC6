@@ -1,9 +1,11 @@
 <template>
+  <br>
+  <br>
   <div class="home">
     <div class="container">
       <div class="card">
         <div class="card-header" style="text-align: center;">
-          <h1>Status</h1>
+          <h2 style="color: #62ce5c; font-family: monospace;">Status</h2>
         </div>
         <div class="card-body">
           <form class="row">
@@ -21,29 +23,20 @@
 </template>
 
 <script>
-// @ is an alias to /src
-
-export default {
-  name: 'HomeView',
-  components: {
-  },
-  data(){
-    return{
-      
-    }
-  },
-  mounted(){
-
-  },
-  methods:{
-    consultarDatos(){
-      this.$router.push('verstatus') 
+  export default {
+    data(){
+      return{
+      }
     },
-    actualizarStatus(){
-      this.$router.push('cambiarstatus') 
+    mounted(){
+    },
+    methods:{
+      consultarDatos(){
+        this.$router.push('verstatus') 
+      },
+      actualizarStatus(){
+        this.$router.push('login') 
+      }
     }
   }
-}
-
-
 </script>

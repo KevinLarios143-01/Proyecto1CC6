@@ -23,10 +23,10 @@ export default {
     this.orden = this.$route.query.orden;
     this.tienda = this.$route.query.tienda;
     this.formato = this.$route.query.formato;
-    this.obtenerConsulta(this.orden, this.formato);
+    this.obtenerConsulta(this.orden, this.tienda, this.formato);
   },
   methods: {
-    obtenerConsulta(ord, forma) {
+    obtenerConsulta(ord, tien, forma) {
       let param = {
         nsol: "",
         estad: "",
@@ -34,7 +34,7 @@ export default {
       };
       axios({
         method: "get",
-        url: "https://forzag.herokuapp.com/solicitudes/" + ord,
+        url: "https://forzag.herokuapp.com/solicitudes/" + ord+"/"+tien,
         responseType: "json",
         data: param,
       }).then((response) => {

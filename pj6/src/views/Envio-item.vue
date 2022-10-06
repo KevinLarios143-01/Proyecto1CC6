@@ -47,7 +47,6 @@ export default {
         responseType: "json",
         data: param,
       }).then((response) => {
-        this.Datos = [];
         if (response.status == 200) {
           console.log("insertado correctamente");
         }

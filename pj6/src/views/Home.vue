@@ -1,27 +1,41 @@
 <template>
-    <div class="home">
-      <img alt="Vue logo" src="../assets/logo.png" />
-      <h1>Instal Vue 3</h1>
-      <button type="button" class="btn btn-primary">Primary</button>
-      <button type="button" class="btn btn-secondary">Secondary</button>
-      <button type="button" class="btn btn-success">Success</button>
-      <button type="button" class="btn btn-danger">Danger</button>
-      <button type="button" class="btn btn-warning">Warning</button>
-      <button type="button" class="btn btn-info">Info</button>
-      <button type="button" class="btn btn-light">Light</button>
-      <button type="button" class="btn btn-dark">Dark</button>
-  
-      <button type="button" class="btn btn-link">Link</button>
-    </div>
-  </template>
+  <vueper-slides fade :touchable="false">
+  <vueper-slide
+    v-for="(slide, i) in slides"
+    :key="i"
+    :image="slide.image"
+    :title="slide.title"
+    :content="slide.content" />
+</vueper-slides>
+
+</template>
 
 <script>
 // @ is an alias to /src
+import { VueperSlides, VueperSlide } from 'vueperslides'
+import 'vueperslides/dist/vueperslides.css'
 
 export default {
   name: 'HomeView',
-  components: {
-
+  components: { VueperSlides, VueperSlide },
+  data(){
+    return{
+      slides: [
+        {
+          image: require('../assets/tienda.jpg')
+        },
+        {
+          image: require('../assets/entrega.jpg')
+        },
+        {
+          image: require('../assets/entrega.png')
+        },
+        {
+          image: require('../assets/forza.jpg')
+        },
+        // Other slides.
+      ]
+    }
   }
 }
 </script>

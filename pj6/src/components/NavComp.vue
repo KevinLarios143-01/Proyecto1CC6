@@ -1,7 +1,7 @@
-<template >
-    <nav class="navbar navbar-expand-lg bg-light" v-if="!['consulta-item','envio-item', 'status-item'].includes($route.name)" >
+<template>
+    <nav class="navbar navbar-expand-lg bg-light">
         <div class="container">
-            <a class="navbar-brand" style="font-weight: bold;">Forza G</a>
+            <a class="navbar-brand" style="font-weight: bold;"> <img src="../assets/logoG.png" class="d-block w-50" alt="..."></a>
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <router-link class="nav-link" to="/">Home</router-link>
@@ -16,13 +16,10 @@
                     <router-link class="nav-link" to="/categoria">Categoria</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/destinatario">Destinatario</router-link>
+                    <router-link class="nav-link" to="/estatus">Status</router-link>
                 </li>
-                <li class="nav-item">
-                    <router-link class="nav-link" to="/remitente">Remitente</router-link>
-                </li>
-                <li class="nav-item">
-                    <router-link class="nav-link" to="/estatus">Estatus</router-link>
+                 <li class="nav-item">
+                    <router-link class="nav-link" to="/precios">Precios</router-link>
                 </li>
                 <li class="nav-item">
                     <router-link class="nav-link" to="/about">About</router-link>

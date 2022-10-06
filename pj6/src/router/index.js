@@ -24,19 +24,14 @@ const routes = [
     component: () => import('../views/Categoria.vue'),
   },
   {
-    path: '/remitente',
-    name: 'remitente',
-    component: () => import('../views/Remitente.vue'),
+    path: '/precios',
+    name: 'precios',
+    component: () => import('../views/Precios.vue'),
   },
   {
     path: '/estatus',
     name: 'estatus',
     component: () => import('../views/Estatus.vue'),
-  },
-  {
-    path: '/destinatario',
-    name: 'destinatario',
-    component: () => import('../views/Destinatario.vue'),
   },
   {
     path: '/verstatus',
@@ -62,6 +57,11 @@ const routes = [
     path: '/cambiarstatus',
     name: 'cambiarstatus',
     component: () => import('../views/ActualizarStatus.vue'),
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('../views/Login.vue'),
   },
   {
     path: '/about',
