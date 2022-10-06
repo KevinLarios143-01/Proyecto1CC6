@@ -6,7 +6,7 @@
 import axios from "axios";
 
 export default {
-  name: "Status-itemView",
+  name: "Consulta-itemView",
   components: {},
   data() {
     return {
@@ -17,23 +17,15 @@ export default {
       cobertura: false,
       costo: 0,
       Datos: [],
-      tagintro: "",
-      tagfin: "",
-      tagcourrier: "",
-      tagdestino: "",
-      tagcobertura: "",
-      tagprecio: "",
-      llaves: ' "orden" :',
-      jsons: null
     };
   },
   mounted() {
     this.destino = this.$route.query.destino;
     this.formato = this.$route.query.formato;
-    this.obtenerConsulta(this.destino);
+    this.obtenerConsulta(this.destino, this.formato);
   },
   methods: {
-    obtenerConsulta(desti) {
+    obtenerConsulta(desti, forma) {
       let param = {
         cod_origen: "",
         cod_destino: "",
@@ -67,45 +59,20 @@ export default {
             this.Datos.push(this.cobertura);
             this.Datos.push(this.costo);
           }
-          let url = "https://reportesvue.herokuapp.com/consulta_xml.php?courier="+this.courier+"&destino="+this.destino+"&cobertura="+this.cobertura+"&costo="+this.costo; 
-          window.location.href = url;
-          //this.formatearData(forma);
+        
+          this.formatearData(forma);
         }
       });
     },
     formatearData(formato) {
       if (formato === "xml" || formato === "XML") {
-        let count = 0;
-        this.tagintro = "<consultaprecio>";
-        this.tagfin = "</consultaprecio>";
-        for (const element of this.Datos) {
-          if (count == 0) {
-            this.tagcourrier = "\t<courrier>" + element + "</courrier>";
-          } else if (count == 1) {
-            this.tagdestino = "\t<destino>" + element + "</destino>";
-          } else if (count == 2) {
-            this.tagcobertura = "\t<cobertura>" + element + "</cobertura>";
-          } else if (count == 3) {
-            this.tagprecio = "\t<costo>" + element + "</costo>";
-          }
-          count++;
-        }
+         
+        let url = "https://reportesvue.herokuapp.com/consulta_xml.php?courier="+this.courier+"&destino="+this.destino+"&cobertura="+this.cobertura+"&costo="+this.costo; 
+        window.location.href = url;
+        
       } else if (formato === "json" || formato === "JSON") {
-        let count = 0;
-        this.tagintro = "{";
-        this.tagfin = "}";
-        for (const element of this.Datos) {
-          if (count == 0) {
-            this.tagcourrier = '"courrier" : ' + '"' + element + '",';
-          } else if (count == 1) {
-            this.tagdestino = '"destino" : ' + '"' + element + '",';
-          } else if (count == 2) {
-            this.tagcobertura = '"cobertura" : ' + '"' + element + '",';
-          } else if (count == 3) {
-            this.tagprecio = '"costo" : ' + '"' + element + '"';
-          }
-          count++;
-        }
+        let url = "https://reportesvue.herokuapp.com/consulta_json.php?courier="+this.courier+"&destino="+this.destino+"&cobertura="+this.cobertura+"&costo="+this.costo; 
+        window.location.href = url;
       }
     },
   },

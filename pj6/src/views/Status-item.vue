@@ -1,68 +1,76 @@
 <template>
-  <div>
-    {{$route.params.id}}
-    &lt;orden&gt;<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;courrier&gt;ForzaG&lt;/courrier&gt;<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;orden&gt;1&lt;/orden&gt;<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;status&gt;En ruta&lt;/status&gt;<br>
-    &lt;/orden&gt;
-  </div>
+
 </template>
 <script>
-  // @ is an alias to /src
-  import axios from 'axios';
-  
-  export default {
-    name: 'Status-itemView',
-    components: {
-  
-    },
-    data(){
-      return{
-        nombre: "",
-        cod_postal: "",
-        aDepartamentos: [],
-      } 
-    },
-    mounted(){
-      this.obtenerConsulta();
-    },
-    methods:{
-      obtenerConsulta(){
-        let param = {
-          cod_postal: "",
-          nombre: ""
-        };
-        axios({
-          method: "get",
-          url: "http://localhost:3000/precios",
-          responseType: "json",
-          data: param,
-        }).then((response) => {
-          this.aDepartamentos = [];
-          console.log("si" + response.status);
-          console.log("h " + response.data);
-          if (response.status == 200) {
-            console.log("ss" + response.status);
-            console.log("si" + response.data.length);
-            for (const element of response.data) {
-              this.aDepartamentos.push({
-                label: element.cod_postal,
-                code: element.nombre
-              });
-            }
-          }
-        });
-      },
-    },
-    setup() {
-  
-  
-      return {
-  
+// @ is an alias to /src
+import axios from "axios";
+
+export default {
+  name: "Status-itemView",
+  components: {},
+  data() {
+    return {
+      courier: "ForzaG",
+      orden: "",
+      tienda: "",
+      formato: "",
+      estado: 0,
+      nestado: "",
+      Datos: [],
+    };
+  },
+  mounted() {
+    this.orden = this.$route.query.orden;
+    this.tienda = this.$route.query.tienda;
+    this.formato = this.$route.query.formato;
+    this.obtenerConsulta(this.orden, this.formato);
+  },
+  methods: {
+    obtenerConsulta(ord, forma) {
+      let param = {
+        nsol: "",
+        estad: "",
+        nomb: "",
       };
+      axios({
+        method: "get",
+        url: "https://forzag.herokuapp.com/solicitudes/" + ord,
+        responseType: "json",
+        data: param,
+      }).then((response) => {
+        this.Datos = [];
+        if (response.status == 200) {
+          if (response.data.estatus.length > 0) {
+            for (const element of response.data.estatus) {
+              this.estado = element.estado;
+              this.nestado = element.nombre;
+            }
+            console.log(this.estado)
+            console.log(this.nestado)
+          } else {
+            this.estado = 0;
+            this.nestado = "no existe";
+          }
+
+          this.formatearData(forma);
+        }
+      });
     },
-  }
-  
-  </script>
+    formatearData(formato) {
+      if (formato === "xml" || formato === "XML") {
+
+        let url = "https://reportesvue.herokuapp.com/status_xml.php?courier=" + this.courier + "&orden=" + this.orden+ "&status=" + this.nestado;
+        window.location.href = url;
+
+      } else if (formato === "json" || formato === "JSON") {
+        let url = "https://reportesvue.herokuapp.com/status_json.php?courier=" + this.courier + "&orden=" + this.orden+ "&status=" + this.nestado;
+        window.location.href = url;
+      }
+    },
+  },
+  setup() {
+    return {};
+  },
+};
+</script>
   
